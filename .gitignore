@@ -8,3 +8,4 @@ node_modules/
 /playwright/.auth/
 # ai agents
 ai-agents/venv/
+ai-agents/.env
