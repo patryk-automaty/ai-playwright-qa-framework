@@ -9,3 +9,4 @@ node_modules/
 # ai agents
 ai-agents/venv/
 ai-agents/.env
+ai-agents/__pycache__
