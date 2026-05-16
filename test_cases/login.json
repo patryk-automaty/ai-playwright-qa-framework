@@ -1,0 +1,16 @@
+{
+    "test_cases": [
+        {
+            "test_id": "TC-001",
+            "title": "Successful Login with Valid Credentials",
+            "description": "Test the login functionality with valid username and password to ensure successful authentication and redirection to the Accounts Overview page.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Username field.",
+                "Enter a valid Password in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is successfully authenticated, redirected to the 'Accounts Overview' page, a welcome message with the user's first and last name is displayed, and the 'Log Out' link is visible in the left-hand menu."
+        }
+    ]
+}
