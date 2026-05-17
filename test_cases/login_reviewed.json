@@ -3,100 +3,155 @@
         {
             "test_id": "TC-001",
             "title": "Successful Login with Valid Credentials",
-            "description": "Test the login functionality with valid username and password to ensure successful authentication and redirection to the Accounts Overview page.",
+            "description": "Test the successful login process for a registered user with valid credentials.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a valid Username in the Username field.",
-                "Enter a valid Password in the Password field.",
+                "Enter a valid Username in the Customer Login panel.",
+                "Enter a valid Password in the Customer Login panel.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is successfully authenticated, redirected to the 'Accounts Overview' page, a welcome message with the user's first and last name is displayed, and the 'Log Out' link is visible in the left-hand menu."
+            "expected_results": "The user is redirected to the 'Accounts Overview' page, a welcome message with the user's first and last name is displayed, and the 'Log Out' link is visible in the left-hand menu."
         },
         {
             "test_id": "TC-002",
-            "title": "Login with Invalid Credentials",
-            "description": "Test the login functionality with invalid username and/or password to ensure authentication is denied and an appropriate error message is displayed.",
+            "title": "Unsuccessful Login with Invalid Username",
+            "description": "Test the login process with an invalid username and valid password.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter an invalid Username in the Username field.",
-                "Enter an invalid Password in the Password field.",
+                "Enter an invalid Username in the Customer Login panel.",
+                "Enter a valid Password in the Customer Login panel.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed indicating invalid login credentials."
+            "expected_results": "The system denies access, displays the error message 'The username and password could not be verified.', and redirects the user to the '/parabank/login.htm' error page."
         },
         {
             "test_id": "TC-003",
-            "title": "Login with Empty Credentials",
-            "description": "Test the login functionality with empty username and password fields to ensure authentication is denied and an appropriate error message is displayed.",
+            "title": "Unsuccessful Login with Invalid Password",
+            "description": "Test the login process with a valid username and invalid password.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Leave the Username field empty.",
-                "Leave the Password field empty.",
+                "Enter a valid Username in the Customer Login panel.",
+                "Enter an invalid Password in the Customer Login panel.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed indicating that username and password are required."
+            "expected_results": "The system denies access, displays the error message 'The username and password could not be verified.', and redirects the user to the '/parabank/login.htm' error page."
         },
         {
             "test_id": "TC-004",
-            "title": "SQL Injection in Username Field",
-            "description": "Test the login functionality for SQL injection vulnerability by entering a SQL statement in the username field.",
+            "title": "Unsuccessful Login with Empty Username",
+            "description": "Test the login process with an empty username field.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a SQL injection string (e.g., ' OR '1'='1) in the Username field.",
-                "Enter any text in the Password field.",
+                "Leave the Username field empty in the Customer Login panel.",
+                "Enter a valid Password in the Customer Login panel.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed. The application should not execute the SQL statement."
+            "expected_results": "The system denies access, displays the error message 'Please enter a username and password.', and redirects the user to the '/parabank/login.htm' error page."
         },
         {
             "test_id": "TC-005",
-            "title": "SQL Injection in Password Field",
-            "description": "Test the login functionality for SQL injection vulnerability by entering a SQL statement in the password field.",
+            "title": "Unsuccessful Login with Empty Password",
+            "description": "Test the login process with an empty password field.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a valid Username in the Username field.",
-                "Enter a SQL injection string (e.g., ' OR '1'='1) in the Password field.",
+                "Enter a valid Username in the Customer Login panel.",
+                "Leave the Password field empty in the Customer Login panel.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed. The application should not execute the SQL statement."
+            "expected_results": "The system denies access, displays the error message 'Please enter a username and password.', and redirects the user to the '/parabank/login.htm' error page."
         },
         {
             "test_id": "TC-006",
-            "title": "Login with Long Username and Password",
-            "description": "Test the login functionality with excessively long username and password to ensure the application handles it gracefully.",
+            "title": "Unsuccessful Login with Both Fields Empty",
+            "description": "Test the login process with both username and password fields empty.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a long string (e.g., 256 characters) in the Username field.",
-                "Enter a long string (e.g., 256 characters) in the Password field.",
+                "Leave both Username and Password fields empty in the Customer Login panel.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed indicating invalid login credentials. The application should not crash or behave unexpectedly."
+            "expected_results": "The system denies access, displays the error message 'Please enter a username and password.', and redirects the user to the '/parabank/login.htm' error page."
         },
         {
             "test_id": "TC-007",
-            "title": "Boundary Value Analysis for Username Field",
-            "description": "Test the login functionality with boundary values for the username field to ensure it handles minimum and maximum lengths correctly.",
+            "title": "Session Termination via Log Out",
+            "description": "Test the session termination process when a logged-in user clicks the 'Log Out' link.",
             "steps": [
-                "Navigate to the ParaBank homepage.",
-                "Enter a username with the minimum allowed length (e.g., 1 character) in the Username field.",
-                "Enter a valid Password in the Password field.",
-                "Click the 'Log In' button.",
-                "Repeat the steps with a username of maximum allowed length (e.g., 50 characters)."
+                "Log in to the ParaBank application with valid credentials.",
+                "Click the 'Log Out' link in the left-hand menu."
             ],
-            "expected_results": "For both minimum and maximum length usernames, the user should be authenticated if the credentials are valid, otherwise, an error message should be displayed."
+            "expected_results": "The system securely terminates the session and redirects the user back to the public homepage ('/parabank/index.htm')."
         },
         {
             "test_id": "TC-008",
-            "title": "Boundary Value Analysis for Password Field",
-            "description": "Test the login functionality with boundary values for the password field to ensure it handles minimum and maximum lengths correctly.",
+            "title": "SQL Injection in Username Field",
+            "description": "Test the login process for SQL injection vulnerability by entering SQL code in the username field.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a valid Username in the Username field.",
-                "Enter a password with the minimum allowed length (e.g., 1 character) in the Password field.",
-                "Click the 'Log In' button.",
-                "Repeat the steps with a password of maximum allowed length (e.g., 50 characters)."
+                "Enter SQL code like ' OR '1'='1 in the Username field.",
+                "Enter a valid Password in the Customer Login panel.",
+                "Click the 'Log In' button."
             ],
-            "expected_results": "For both minimum and maximum length passwords, the user should be authenticated if the credentials are valid, otherwise, an error message should be displayed."
+            "expected_results": "The system denies access and displays the error message 'The username and password could not be verified.', ensuring no SQL injection vulnerability is present."
+        },
+        {
+            "test_id": "TC-009",
+            "title": "SQL Injection in Password Field",
+            "description": "Test the login process for SQL injection vulnerability by entering SQL code in the password field.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Customer Login panel.",
+                "Enter SQL code like ' OR '1'='1 in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The system denies access and displays the error message 'The username and password could not be verified.', ensuring no SQL injection vulnerability is present."
+        },
+        {
+            "test_id": "TC-010",
+            "title": "Login with Long Username",
+            "description": "Test the login process with a username that exceeds typical length limits.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a very long Username (e.g., 256 characters) in the Customer Login panel.",
+                "Enter a valid Password in the Customer Login panel.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The system denies access and displays an appropriate error message, ensuring the application handles long input gracefully without crashing."
+        },
+        {
+            "test_id": "TC-011",
+            "title": "Login with Long Password",
+            "description": "Test the login process with a password that exceeds typical length limits.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Customer Login panel.",
+                "Enter a very long Password (e.g., 256 characters) in the Customer Login panel.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The system denies access and displays an appropriate error message, ensuring the application handles long input gracefully without crashing."
+        },
+        {
+            "test_id": "TC-012",
+            "title": "Boundary Value Test for Username Length",
+            "description": "Test the login process with a username at the boundary of acceptable length.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a Username with exactly the maximum allowed length (e.g., 50 characters) in the Customer Login panel.",
+                "Enter a valid Password in the Customer Login panel.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The system processes the login correctly if the username length is within acceptable limits, allowing access if credentials are valid."
+        },
+        {
+            "test_id": "TC-013",
+            "title": "Boundary Value Test for Password Length",
+            "description": "Test the login process with a password at the boundary of acceptable length.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Customer Login panel.",
+                "Enter a Password with exactly the maximum allowed length (e.g., 50 characters) in the Customer Login panel.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The system processes the login correctly if the password length is within acceptable limits, allowing access if credentials are valid."
         }
     ]
 }

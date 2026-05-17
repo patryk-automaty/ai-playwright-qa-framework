@@ -67,7 +67,7 @@ def generate_test_cases(file_name):
 
     with open(output_path, 'w', encoding='utf-8') as output_file:
         output_file.write(json_output)
-
+    print("===========================================\n")
     print("=== TEST CASES HAVE BEEN GENERATED ===")
     print("\n===========================================")
 
