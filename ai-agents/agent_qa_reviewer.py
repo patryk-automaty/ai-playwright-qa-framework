@@ -72,8 +72,7 @@ def review_test_cases(file_name):
     with open(output_path, 'w', encoding='utf-8') as output_file:
         output_file.write(json_output)
 
-    print("=== REVIEWED TEST CASES ===")
-    print(json_output)
+    print("=== TEST CASES HAVE BEEN REVIEWED ===")
     print("\n===========================================")
 
 
