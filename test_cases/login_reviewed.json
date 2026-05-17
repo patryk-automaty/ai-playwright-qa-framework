@@ -1,0 +1,102 @@
+{
+    "test_cases": [
+        {
+            "test_id": "TC-001",
+            "title": "Successful Login with Valid Credentials",
+            "description": "Test the login functionality with valid username and password to ensure successful authentication and redirection to the Accounts Overview page.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Username field.",
+                "Enter a valid Password in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is successfully authenticated, redirected to the 'Accounts Overview' page, a welcome message with the user's first and last name is displayed, and the 'Log Out' link is visible in the left-hand menu."
+        },
+        {
+            "test_id": "TC-002",
+            "title": "Login with Invalid Credentials",
+            "description": "Test the login functionality with invalid username and/or password to ensure authentication is denied and an appropriate error message is displayed.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter an invalid Username in the Username field.",
+                "Enter an invalid Password in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed indicating invalid login credentials."
+        },
+        {
+            "test_id": "TC-003",
+            "title": "Login with Empty Credentials",
+            "description": "Test the login functionality with empty username and password fields to ensure authentication is denied and an appropriate error message is displayed.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Leave the Username field empty.",
+                "Leave the Password field empty.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed indicating that username and password are required."
+        },
+        {
+            "test_id": "TC-004",
+            "title": "SQL Injection in Username Field",
+            "description": "Test the login functionality for SQL injection vulnerability by entering a SQL statement in the username field.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a SQL injection string (e.g., ' OR '1'='1) in the Username field.",
+                "Enter any text in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed. The application should not execute the SQL statement."
+        },
+        {
+            "test_id": "TC-005",
+            "title": "SQL Injection in Password Field",
+            "description": "Test the login functionality for SQL injection vulnerability by entering a SQL statement in the password field.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Username field.",
+                "Enter a SQL injection string (e.g., ' OR '1'='1) in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed. The application should not execute the SQL statement."
+        },
+        {
+            "test_id": "TC-006",
+            "title": "Login with Long Username and Password",
+            "description": "Test the login functionality with excessively long username and password to ensure the application handles it gracefully.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a long string (e.g., 256 characters) in the Username field.",
+                "Enter a long string (e.g., 256 characters) in the Password field.",
+                "Click the 'Log In' button."
+            ],
+            "expected_results": "The user is not authenticated, remains on the login page, and an error message is displayed indicating invalid login credentials. The application should not crash or behave unexpectedly."
+        },
+        {
+            "test_id": "TC-007",
+            "title": "Boundary Value Analysis for Username Field",
+            "description": "Test the login functionality with boundary values for the username field to ensure it handles minimum and maximum lengths correctly.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a username with the minimum allowed length (e.g., 1 character) in the Username field.",
+                "Enter a valid Password in the Password field.",
+                "Click the 'Log In' button.",
+                "Repeat the steps with a username of maximum allowed length (e.g., 50 characters)."
+            ],
+            "expected_results": "For both minimum and maximum length usernames, the user should be authenticated if the credentials are valid, otherwise, an error message should be displayed."
+        },
+        {
+            "test_id": "TC-008",
+            "title": "Boundary Value Analysis for Password Field",
+            "description": "Test the login functionality with boundary values for the password field to ensure it handles minimum and maximum lengths correctly.",
+            "steps": [
+                "Navigate to the ParaBank homepage.",
+                "Enter a valid Username in the Username field.",
+                "Enter a password with the minimum allowed length (e.g., 1 character) in the Password field.",
+                "Click the 'Log In' button.",
+                "Repeat the steps with a password of maximum allowed length (e.g., 50 characters)."
+            ],
+            "expected_results": "For both minimum and maximum length passwords, the user should be authenticated if the credentials are valid, otherwise, an error message should be displayed."
+        }
+    ]
+}

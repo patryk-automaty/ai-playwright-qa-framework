@@ -21,7 +21,7 @@ def generate_test_cases(file_name):
         return None
     
     # initialize LLM
-    llm = ChatOpenAI(model='gpt-4o', temperature=0.2)
+    llm = ChatOpenAI(model='gpt-4o', temperature=0.1)
 
     # add to LLM out sctructured data model
     structured_llm = llm.with_structured_output(TestSuite)
