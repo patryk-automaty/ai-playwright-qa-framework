@@ -10,6 +10,10 @@ test.describe("Module: Customer Login", () => {
   let incorrectUserName: string;
   let correctPassword: string;
   let incorrectPassword: string;
+  let longUsername: string;
+  let longPassword: string;
+  let boundaryUsername: string;
+  let boundaryPassword: string;
 
   test.beforeEach(async ({page}) => {
 
@@ -20,6 +24,12 @@ test.describe("Module: Customer Login", () => {
     incorrectUserName = "admin123";
     correctPassword = "admin";
     incorrectPassword = "admin123";
+    longUsername = 'a'.repeat(256);
+    longPassword = 'a'.repeat(256);
+    boundaryUsername = 'a'.repeat(50);
+    boundaryPassword = 'a'.repeat(50);
+
+
   });
 
   test('TC-001 - Successful Login (Happy Path)', async({page}) => {
@@ -69,5 +79,32 @@ test.describe("Module: Customer Login", () => {
 
     await expect(loginPage.loginButton).toBeVisible();
   });
+    
+  test('TC-010 - Login with Long Username', async ({page}) => {
+
+    await loginPage.login(longUsername, correctPassword);
+    await expect(loginPage.loginErrorMessage).toHaveText("The username and password could not be verified.");
+  });
+
+  test('TC-011 - Login with Long Password', async ({page}) => {
+
+    await loginPage.login(correctUserName, longPassword);
+    await expect(loginPage.loginErrorMessage).toHaveText("The username and password could not be verified.");
+  });
+
+  test('TC-012 - Boundary Value Test for Username Length', async ({page}) => {
+
+    await loginPage.login(boundaryUsername, correctPassword);
+    await expect(loginPage.loginErrorMessage).toBeVisible();
+  });
+
+  test('TC-013 - Boundary Value Test for Password Length', async ({page}) => {
+
+    await loginPage.login(correctUserName, boundaryPassword);
+    await expect(loginPage.loginErrorMessage).toBeVisible();
+  });
+
+
+
 
 });
