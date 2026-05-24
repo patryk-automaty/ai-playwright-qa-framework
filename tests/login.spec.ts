@@ -6,23 +6,68 @@ test.describe("Module: Customer Login", () => {
 
   let loginPage: LoginPage;
   let overviewPage: OverviewPage;
+  let correctUserName: string;
+  let incorrectUserName: string;
+  let correctPassword: string;
+  let incorrectPassword: string;
 
   test.beforeEach(async ({page}) => {
 
     await page.goto('http://localhost:8080/parabank/index.htm');
     loginPage = new LoginPage(page);
     overviewPage = new OverviewPage (page);
+    correctUserName = "admin";
+    incorrectUserName = "admin123";
+    correctPassword = "admin";
+    incorrectPassword = "admin123";
   });
 
-  test('Successful Login (Happy Path)', async({page}) => {
+  test('TC-001 - Successful Login (Happy Path)', async({page}) => {
 
-    await loginPage.login("admin", "admin")
+    await loginPage.login(correctUserName, correctPassword)
     await expect(overviewPage.accountsOverviewHeader).toHaveText("Accounts Overview");
   });
 
-  test('Unsuccessful Login with Invalid Username', async({page}) => {
+  test('TC-002 - Unsuccessful Login with Invalid Username', async({page}) => {
 
-    await loginPage.login("admin", "admin123")
+    await loginPage.login(incorrectUserName, correctPassword)
     await expect(loginPage.loginErrorMessage).toHaveText("The username and password could not be verified.");
 });
+
+  test('TC-003 - Unsuccessful Login with Invalid Password', async({page}) => {
+
+    await loginPage.login(correctUserName, incorrectPassword);
+    await expect(loginPage.loginErrorMessage).toHaveText("The username and password could not be verified.");
+});
+  
+  test('TC-004 - Unsuccessful Login with Empty Username', async ({page}) => {
+
+    await loginPage.passwordInput.fill(correctPassword);
+    await loginPage.loginButton.click();
+
+    await expect(loginPage.emptyLoginOrPasswordMessage).toHaveText("Please enter a username and password.")
+  });
+
+  test('TC-005 - Unsuccessful Login with Empty Password', async ({page}) => {
+
+    await loginPage.usernameInput.fill(correctUserName);
+    await loginPage.loginButton.click();
+
+    await expect(loginPage.emptyLoginOrPasswordMessage).toHaveText("Please enter a username and password.")
+  });  
+
+  test('TC-006 - Unsuccessful Login with Both Fields Empty', async ({page}) => {
+
+    await loginPage.loginButton.click();
+
+    await expect(loginPage.emptyLoginOrPasswordMessage).toHaveText("Please enter a username and password.")
+  });
+  
+  test('TC-007 - Session Termination via Log Out', async ({page}) => {
+
+    await loginPage.logout(correctUserName, correctPassword);
+
+    await expect(loginPage.loginButton).toBeVisible();
+  });
+
 });
