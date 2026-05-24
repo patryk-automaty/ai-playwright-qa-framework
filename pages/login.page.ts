@@ -13,4 +13,10 @@ export class LoginPage {
     this.loginButton = page.getByRole('button', { name: 'Log In' });
     this.loginErrorMessage = page.getByText('The username and password');
     }
+
+    async login(userName: string, userPassword: string): Promise <void> {
+      await this.usernameInput.fill(userName);
+      await this.passwordInput.fill(userPassword);
+      await this.loginButton.click();
+    }
 }
