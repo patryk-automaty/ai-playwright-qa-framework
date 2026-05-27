@@ -8,6 +8,3 @@ export class OverviewPage {
         this.accountsOverviewHeader = page.getByRole('heading', { name: 'Accounts Overview' });
     }
 }
-
-
-// await page.getByRole('heading', { name: 'Accounts Overview' }).click();

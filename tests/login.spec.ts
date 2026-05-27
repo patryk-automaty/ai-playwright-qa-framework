@@ -17,7 +17,7 @@ test.describe("Module: Customer Login", () => {
 
   test.beforeEach(async ({page}) => {
 
-    await page.goto('http://localhost:8080/parabank/index.htm');
+    await page.goto('/parabank/index.htm');
     loginPage = new LoginPage(page);
     overviewPage = new OverviewPage (page);
     correctUserName = "admin";
