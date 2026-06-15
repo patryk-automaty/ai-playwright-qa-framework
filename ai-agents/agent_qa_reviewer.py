@@ -8,7 +8,7 @@ from models import TestSuite
 load_dotenv()
 
 
-def review_test_cases(file_name):
+def review_test_cases(file_name: str, model_name:str):
     """
     Reviews and enhances a JSON test case file using an AI agent (GPT-4o).
 
@@ -36,7 +36,7 @@ def review_test_cases(file_name):
         return None
 
     # Initialize the LLM (GPT-4o) with moderate temperature for balanced creativity
-    llm = ChatOpenAI(model='gpt-4o', temperature=0.3)
+    llm = ChatOpenAI(model=model_name, temperature=0.3)
 
     # Bind the LLM to the Pydantic TestSuite model for structured JSON output
     structured_llm = llm.with_structured_output(TestSuite)

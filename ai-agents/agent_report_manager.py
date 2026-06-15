@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate
 load_dotenv()
 
 
-def prepare_tests_report(file_name: str) -> None:
+def prepare_tests_report(file_name: str,model_name:str ):
     """
     Reads a Playwright JSON test report, sends it to an LLM for executive analysis,
     and writes the resulting Markdown summary to reports/executive_summary.md.
@@ -28,7 +28,7 @@ def prepare_tests_report(file_name: str) -> None:
         return
 
     # Initialise the LLM — GPT-4o with low temperature for consistent, factual output
-    llm = ChatOpenAI(model='gpt-4o', temperature=0.2)
+    llm = ChatOpenAI(model=model_name, temperature=0.2)
 
     # Build a structured prompt for executive QA report generation
     prompt = ChatPromptTemplate.from_messages([

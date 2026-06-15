@@ -8,7 +8,7 @@ from models import TestSuite
 load_dotenv()
 
 
-def generate_test_cases(file_name):
+def generate_test_cases(file_name: str,model_name: str ):
     """
     Generates structured test cases from a Markdown requirements file using an AI agent (GPT-4o).
 
@@ -36,7 +36,7 @@ def generate_test_cases(file_name):
         return None
 
     # Initialize the LLM (GPT-4o) with low temperature for consistent, deterministic output
-    llm = ChatOpenAI(model='gpt-4o', temperature=0.1)
+    llm = ChatOpenAI(model=model_name, temperature=0.1)
 
     # Bind the LLM to the Pydantic TestSuite model for structured JSON output
     structured_llm = llm.with_structured_output(TestSuite)
