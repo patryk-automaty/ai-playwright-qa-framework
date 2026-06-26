@@ -3,14 +3,14 @@
         {
             "test_id": "TC-001",
             "title": "Successful Login",
-            "description": "Verify that a registered user can log in with valid credentials and is redirected to the Accounts Overview page with a welcome message.",
+            "description": "Verify that a registered user can log in with valid credentials and is redirected to the Accounts Overview page.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
                 "Enter a valid Username.",
                 "Enter a valid Password.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "User is authenticated, redirected to the Accounts Overview page, sees a welcome message with their first and last name, and the 'Log Out' link is visible."
+            "expected_results": "User is authenticated, redirected to the Accounts Overview page, sees a welcome message with their name, and the 'Log Out' link is visible."
         },
         {
             "test_id": "TC-002",
@@ -39,7 +39,7 @@
         {
             "test_id": "TC-004",
             "title": "Unsuccessful Login - Empty Username",
-            "description": "Verify that the system denies access when the username field is left empty.",
+            "description": "Verify that the system denies access when the username field is empty.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
                 "Leave the Username field empty.",
@@ -51,7 +51,7 @@
         {
             "test_id": "TC-005",
             "title": "Unsuccessful Login - Empty Password",
-            "description": "Verify that the system denies access when the password field is left empty.",
+            "description": "Verify that the system denies access when the password field is empty.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
                 "Enter a valid Username.",
@@ -63,7 +63,7 @@
         {
             "test_id": "TC-006",
             "title": "Session Termination - Log Out",
-            "description": "Verify that an authenticated user can log out successfully and is redirected to the public homepage.",
+            "description": "Verify that an authenticated user can log out successfully and is redirected to the homepage.",
             "steps": [
                 "Log in with valid credentials.",
                 "Click the 'Log Out' link."
