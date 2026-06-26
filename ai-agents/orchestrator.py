@@ -3,6 +3,7 @@ import os
 import sys
 import agent_tester
 import agent_qa_reviewer
+import agent_report_manager
 
 def main():
     print("Welcome to the AI-Playwright QA Framework CLI \n")
@@ -51,6 +52,7 @@ def main():
             agent_qa_reviewer.review_test_cases(file_name, model_choice)
         elif agent_choice == "reporter":
             print(f"[SIMULATION] -> Called prepare_tests_report('{file_name}', '{model_choice}')")
+            agent_report_manager.prepare_tests_report(file_name, model_choice)
             
         
     except Exception as e:
