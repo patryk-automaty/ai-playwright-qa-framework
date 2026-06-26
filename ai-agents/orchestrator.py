@@ -1,7 +1,8 @@
 import questionary
 import os 
 import sys
-
+import agent_tester
+import agent_qa_reviewer
 
 def main():
     print("Welcome to the AI-Playwright QA Framework CLI \n")
@@ -30,6 +31,30 @@ def main():
 
     if model_choice is None:
         sys.exit(0)
+
+    file_name = questionary.text("Enter the exact target file name").ask()
+
+    if file_name is None or file_name.strip() == "":
+        print("Wrong file name")
+        sys.exit(1)
+
+    print(f"\n Starting process...")
+    print(f"Model: {model_choice}")
+    print(f"File: {file_name}\n")
+
+    try:
+        if agent_choice == "tester":
+            print(f"[SIMULATION] -> Called generate_test_cases('{file_name}', '{model_choice}')")
+            agent_tester.generate_test_cases(file_name, model_choice)
+        elif agent_choice == "reviewer":
+            print(f"[SIMULATION] -> Called review_test_cases('{file_name}', '{model_choice}')")
+            agent_qa_reviewer.review_test_cases(file_name, model_choice)
+        elif agent_choice == "reporter":
+            print(f"[SIMULATION] -> Called prepare_tests_report('{file_name}', '{model_choice}')")
+            
+        
+    except Exception as e:
+        print(f"An error occurred during Agent execution {e}")
 
 
 if __name__ == '__main__':

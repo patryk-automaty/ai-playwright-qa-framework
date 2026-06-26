@@ -2,84 +2,73 @@
     "test_cases": [
         {
             "test_id": "TC-001",
-            "title": "Successful Login with Valid Credentials",
-            "description": "Test the successful login process for a registered user with valid credentials.",
+            "title": "Successful Login",
+            "description": "Verify that a registered user can log in with valid credentials and is redirected to the Accounts Overview page with a welcome message.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a valid Username in the Customer Login panel.",
-                "Enter a valid Password in the Customer Login panel.",
+                "Enter a valid Username.",
+                "Enter a valid Password.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The user is redirected to the 'Accounts Overview' page, a welcome message with the user's first and last name is displayed, and the 'Log Out' link is visible in the left-hand menu."
+            "expected_results": "User is authenticated, redirected to the Accounts Overview page, sees a welcome message with their first and last name, and the 'Log Out' link is visible."
         },
         {
             "test_id": "TC-002",
-            "title": "Unsuccessful Login with Invalid Username",
-            "description": "Test the login process with an invalid username and valid password.",
+            "title": "Unsuccessful Login - Invalid Username",
+            "description": "Verify that the system denies access when an invalid username is entered.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter an invalid Username in the Customer Login panel.",
-                "Enter a valid Password in the Customer Login panel.",
+                "Enter an invalid Username.",
+                "Enter a valid Password.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The system denies access, displays the error message 'The username and password could not be verified.', and redirects the user to the '/parabank/login.htm' error page."
+            "expected_results": "Access is denied, error message 'The username and password could not be verified.' is displayed, and user is redirected to the /parabank/login.htm error page."
         },
         {
             "test_id": "TC-003",
-            "title": "Unsuccessful Login with Invalid Password",
-            "description": "Test the login process with a valid username and invalid password.",
+            "title": "Unsuccessful Login - Invalid Password",
+            "description": "Verify that the system denies access when an invalid password is entered.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a valid Username in the Customer Login panel.",
-                "Enter an invalid Password in the Customer Login panel.",
+                "Enter a valid Username.",
+                "Enter an invalid Password.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The system denies access, displays the error message 'The username and password could not be verified.', and redirects the user to the '/parabank/login.htm' error page."
+            "expected_results": "Access is denied, error message 'The username and password could not be verified.' is displayed, and user is redirected to the /parabank/login.htm error page."
         },
         {
             "test_id": "TC-004",
-            "title": "Unsuccessful Login with Empty Username",
-            "description": "Test the login process with an empty username field.",
+            "title": "Unsuccessful Login - Empty Username",
+            "description": "Verify that the system denies access when the username field is left empty.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Leave the Username field empty in the Customer Login panel.",
-                "Enter a valid Password in the Customer Login panel.",
+                "Leave the Username field empty.",
+                "Enter a valid Password.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The system denies access, displays the error message 'Please enter a username and password.', and redirects the user to the '/parabank/login.htm' error page."
+            "expected_results": "Access is denied, error message 'Please enter a username and password.' is displayed, and user is redirected to the /parabank/login.htm error page."
         },
         {
             "test_id": "TC-005",
-            "title": "Unsuccessful Login with Empty Password",
-            "description": "Test the login process with an empty password field.",
+            "title": "Unsuccessful Login - Empty Password",
+            "description": "Verify that the system denies access when the password field is left empty.",
             "steps": [
                 "Navigate to the ParaBank homepage.",
-                "Enter a valid Username in the Customer Login panel.",
-                "Leave the Password field empty in the Customer Login panel.",
+                "Enter a valid Username.",
+                "Leave the Password field empty.",
                 "Click the 'Log In' button."
             ],
-            "expected_results": "The system denies access, displays the error message 'Please enter a username and password.', and redirects the user to the '/parabank/login.htm' error page."
+            "expected_results": "Access is denied, error message 'Please enter a username and password.' is displayed, and user is redirected to the /parabank/login.htm error page."
         },
         {
             "test_id": "TC-006",
-            "title": "Unsuccessful Login with Both Fields Empty",
-            "description": "Test the login process with both username and password fields empty.",
+            "title": "Session Termination - Log Out",
+            "description": "Verify that an authenticated user can log out successfully and is redirected to the public homepage.",
             "steps": [
-                "Navigate to the ParaBank homepage.",
-                "Leave both Username and Password fields empty in the Customer Login panel.",
-                "Click the 'Log In' button."
+                "Log in with valid credentials.",
+                "Click the 'Log Out' link."
             ],
-            "expected_results": "The system denies access, displays the error message 'Please enter a username and password.', and redirects the user to the '/parabank/login.htm' error page."
-        },
-        {
-            "test_id": "TC-007",
-            "title": "Session Termination via Log Out",
-            "description": "Test the session termination process when a logged-in user clicks the 'Log Out' link.",
-            "steps": [
-                "Log in to the ParaBank application with valid credentials.",
-                "Click the 'Log Out' link in the left-hand menu."
-            ],
-            "expected_results": "The system securely terminates the session and redirects the user back to the public homepage ('/parabank/index.htm')."
+            "expected_results": "Session is terminated, user is redirected to the public homepage (/parabank/index.htm)."
         }
     ]
 }
