@@ -20,9 +20,9 @@ test.describe("Module: Customer Login", () => {
     await page.goto('/parabank/index.htm');
     loginPage = new LoginPage(page);
     overviewPage = new OverviewPage (page);
-    correctUserName = "admin";
+    correctUserName = "john";
     incorrectUserName = "admin123";
-    correctPassword = "admin";
+    correctPassword = "demo";
     incorrectPassword = "admin123";
     longUsername = 'a'.repeat(256);
     longPassword = 'a'.repeat(256);
